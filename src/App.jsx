@@ -75,7 +75,7 @@ function App() {
         <div className="cartao">
           <span style={{fontSize: '3.5rem', marginBottom: '15px', display: 'block'}}>✨</span>
           <h1 className="titulo-principal">Guia dos Arquétipos</h1>
-          <p className="texto-cinza">Descubra a energia que guia sua essência e seu estilo com a consultoria da Lilly.</p>
+          <p className="texto-cinza">Descubra a energia que guia sua essência e seu estilo com a consultoria da Alana.</p>
           <button className="botao-rosa" onClick={() => setTela('quiz')}>Iniciar Jornada</button>
         </div>
       )}
@@ -86,16 +86,27 @@ function App() {
             <div className="barra-preenchida" style={{ width: `${((perguntaAtual + 1) / perguntas.length) * 100}%` }}></div>
           </div>
           <h2 style={{color: '#374151', margin: '20px 0', fontSize: '1.4rem'}}>{perguntas[perguntaAtual].titulo}</h2>
-          <div style={{display: 'flex', flexDirection: 'column', gap: '12px'}}>
-            {perguntas[perguntaAtual].opcoes.map((opcao, i) => (
-              <button key={i} className="botao-rosa" style={{backgroundColor: '#fff', color: '#be185d', border: '1px solid #fce7f3', textAlign: 'left'}} onClick={() => responder(opcao.tipo)}>
-                {opcao.texto}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
+        <div style={{display: 'flex', flexDirection: 'column', gap: '15px'}}>
+  {perguntas[perguntaAtual].opcoes.map((opcao, i) => (
+    <button 
+      key={i} 
+      className="botao-rosa" 
+      style={{
+        textAlign: 'left',
+        padding: '18px',
+        fontSize: '1rem',
+        lineHeight: '1.4',
+        color: '#ffffff', // FORÇA O BRANCO AQUI
+        display: 'flex',
+        alignItems: 'center',
+        gap: '10px'
+      }} 
+      onClick={() => responder(opcao.tipo)}
+    >
+      {opcao.texto}
+    </button>
+  ))}
+</div>
       {tela === 'resultado' && (
         <div className="cartao">
           <span className="resultado-emoji">{perfilFinal.emoji}</span>

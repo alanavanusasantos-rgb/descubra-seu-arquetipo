@@ -60,9 +60,9 @@ body {
   line-height: 1.6;
 }
 
-..botao-rosa {
-  background: linear-gradient(135deg, #be185d 0%, #db2777 100%);
-  color: #ffffff !important; /* Força o branco total */
+.botao-rosa {
+  background: linear-gradient(135deg, #be185d 0%, #db2777 100%) !important;
+  color: #ffffff !important; /* O !important garante que o branco vença qualquer outra regra */
   border: none;
   padding: 16px 28px;
   border-radius: 50px;
@@ -72,7 +72,6 @@ body {
   transition: all 0.3s ease;
   width: 100%;
   box-shadow: 0 4px 6px rgba(190, 24, 93, 0.2);
-  display: block;
 }
 
 .botao-rosa:hover {
