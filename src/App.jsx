@@ -102,15 +102,22 @@ function App() {
           <h1 className="resultado-titulo">{perfilFinal.nome}</h1>
           <div className="divider"></div>
           <p className="texto-cinza">{perfilFinal.desc}</p>
-          <div style={{display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '20px'}}>
-            <a href={urlWhatsapp} target="_blank" className="botao-whatsapp">Compartilhar Resultado</a>
-            <button className="botao-rosa" style={{background: '#f3f4f6', color: '#4b5563'}} onClick={() => window.location.reload()}>Refazer</button>
-          </div>
-        </div>
-      )}
-
-    </div>
-  )
-}
-
-export default App
+         <div style={{display: 'flex', flexDirection: 'column', gap: '12px'}}>
+  {perguntas[perguntaAtual].opcoes.map((opcao, i) => (
+    <button 
+      key={i} 
+      className="botao-rosa" 
+      style={{
+        backgroundColor: '#fff1f2', // Fundo rosa bem clarinho
+        color: '#be185d',           // Texto rosa escuro (bem visível)
+        border: '2px solid #fce7f3', 
+        textAlign: 'left',
+        fontSize: '0.95rem',
+        fontWeight: '500'
+      }} 
+      onClick={() => responder(opcao.tipo)}
+    >
+      {opcao.texto}
+    </button>
+  ))}
+</div>
