@@ -102,18 +102,16 @@ function App() {
           <h1 className="resultado-titulo">{perfilFinal.nome}</h1>
           <div className="divider"></div>
           <p className="texto-cinza">{perfilFinal.desc}</p>
-         <div style={{display: 'flex', flexDirection: 'column', gap: '12px'}}>
+       <div style={{display: 'flex', flexDirection: 'column', gap: '15px'}}>
   {perguntas[perguntaAtual].opcoes.map((opcao, i) => (
     <button 
       key={i} 
       className="botao-rosa" 
       style={{
-        backgroundColor: '#fff1f2', // Fundo rosa bem clarinho
-        color: '#be185d',           // Texto rosa escuro (bem visível)
-        border: '2px solid #fce7f3', 
         textAlign: 'left',
-        fontSize: '0.95rem',
-        fontWeight: '500'
+        padding: '20px',
+        fontSize: '1rem',
+        lineHeight: '1.4'
       }} 
       onClick={() => responder(opcao.tipo)}
     >
