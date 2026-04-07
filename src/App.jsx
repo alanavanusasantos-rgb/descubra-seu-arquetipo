@@ -10,21 +10,21 @@ function App() {
     {
       titulo: "O que mais renova sua energia e te traz paz?",
       opcoes: [
-        { texto: "🎨 Expressar minha essência através da arte ou decoração.", tipo: "criativa" },
-        { texto: "📊 Organizar minhas metas e traçar planos claros de ação.", tipo: "estrategista" },
-        { texto: "🌿 Cuidar das pessoas que amo ou do meu lar com carinho.", tipo: "protetora" }
+        { texto: "🎨 Expressar minha essência através da arte", tipo: "criativa" },
+        { texto: "📊 Organizar minhas metas e planos", tipo: "estrategista" },
+        { texto: "🌿 Cuidar das pessoas e do meu lar", tipo: "protetora" }
       ]
     },
     {
-      titulo: "Diante de um desafio, qual sua primeira reação?",
+      titulo: "Diante de um desafio, qual sua reação?",
       opcoes: [
-        { texto: "✨ Buscar uma solução inovadora e fora da caixa.", tipo: "criativa" },
-        { texto: "⚖️ Analisar os fatos e traçar uma estratégia lógica.", tipo: "estrategista" },
-        { texto: "🤝 Pensar em como isso afeta as relações e o bem-estar coletivo.", tipo: "protetora" }
+        { texto: "✨ Buscar uma solução inovadora", tipo: "criativa" },
+        { texto: "⚖️ Analisar os fatos e traçar uma lógica", tipo: "estrategista" },
+        { texto: "🤝 Pensar no bem-estar coletivo", tipo: "protetora" }
       ]
     },
     {
-      titulo: "Qual dessas palavras melhor define sua força?",
+      titulo: "Qual palavra melhor define sua força?",
       opcoes: [
         { texto: "Inovação", tipo: "criativa" },
         { texto: "Liderança", tipo: "estrategista" },
@@ -34,21 +34,9 @@ function App() {
   ];
 
   const resultados = {
-    criativa: { 
-      nome: "A Criativa", 
-      emoji: "🎨", 
-      desc: "Sua alma é artística e inspiradora. Você transforma o mundo ao seu redor com beleza, originalidade e sensibilidade única."
-    },
-    estrategista: { 
-      nome: "A Estrategista", 
-      emoji: "🎯", 
-      desc: "Você é uma líder nata. Seu foco, disciplina e visão de futuro transformam sonhos ousados em planos concretos e realidade."
-    },
-    protetora: { 
-      nome: "A Protetora", 
-      emoji: "🌿", 
-      desc: "Seu coração é um refúgio. Você nutre, acolhe e fortalece as relações, criando laços profundos de amor, confiança e bem-estar."
-    }
+    criativa: { nome: "A Criativa", emoji: "🎨", desc: "Sua alma é inspiradora e você transforma o mundo com sua sensibilidade única." },
+    estrategista: { nome: "A Estrategista", emoji: "🎯", desc: "Você é uma líder nata, com foco e visão para transformar sonhos em planos reais." },
+    protetora: { nome: "A Protetora", emoji: "🌿", desc: "Seu coração é um refúgio. Você nutre e fortalece os laços com amor e confiança." }
   };
 
   const responder = (tipo) => {
@@ -63,20 +51,16 @@ function App() {
 
   const vencedor = Object.keys(pontos).reduce((a, b) => pontos[a] > pontos[b] ? a : b);
   const perfilFinal = resultados[vencedor];
-
-  // Link para compartilhar no WhatsApp
-  const mensagem = `Fiz o Quiz da Alana! Meu arquétipo é ${perfilFinal.nome} ${perfilFinal.emoji}. Descubra o seu: https://descubra-seu-arquetipo.vercel.app/`;
-  const urlWhatsapp = `https://wa.me/?text=${encodeURIComponent(mensagem)}`;
+  const urlWa = `https://wa.me/?text=${encodeURIComponent(`Meu Arquétipo é ${perfilFinal.nome}! Descubra o seu: https://descubra-seu-arquetipo.vercel.app/`)}`;
 
   return (
     <div className="tela-cheia">
-      
       {tela === 'inicio' && (
         <div className="cartao">
-          <span style={{fontSize: '3.5rem', marginBottom: '15px', display: 'block'}}>✨</span>
-          <h1 className="titulo-principal">Guia dos Arquétipos</h1>
-          <p className="texto-cinza">Descubra a energia que guia sua essência e seu estilo com a consultoria da Alana.</p>
-          <button className="botao-rosa" onClick={() => setTela('quiz')}>Iniciar Jornada</button>
+          <span style={{fontSize: '3.5rem', display: 'block', marginBottom: '10px'}}>✨</span>
+          <h1 className="titulo-principal">Guia de Arquétipos</h1>
+          <p className="texto-cinza">Descubra a energia que guia sua essência com a consultoria da Lilly.</p>
+          <button className="botao-rosa" onClick={() => setTela('quiz')}>Iniciar Teste</button>
         </div>
       )}
 
@@ -85,48 +69,36 @@ function App() {
           <div className="barra-container">
             <div className="barra-preenchida" style={{ width: `${((perguntaAtual + 1) / perguntas.length) * 100}%` }}></div>
           </div>
-          <h2 style={{color: '#374151', margin: '20px 0', fontSize: '1.4rem'}}>{perguntas[perguntaAtual].titulo}</h2>
-        <div style={{display: 'flex', flexDirection: 'column', gap: '15px'}}>
-  {perguntas[perguntaAtual].opcoes.map((opcao, i) => (
-    <button 
-      key={i} 
-      className="botao-rosa" 
-      style={{
-        textAlign: 'left',
-        padding: '18px',
-        fontSize: '1rem',
-        lineHeight: '1.4',
-        color: '#ffffff', // FORÇA O BRANCO AQUI
-        display: 'flex',
-        alignItems: 'center',
-        gap: '10px'
-      }} 
-      onClick={() => responder(opcao.tipo)}
-    >
-      {opcao.texto}
-    </button>
-  ))}
-</div>
+          <h2 className="texto-cinza" style={{fontWeight: '700', color: '#1f2937', marginBottom: '20px'}}>
+            {perguntas[perguntaAtual].titulo}
+          </h2>
+          <div style={{display: 'flex', flexDirection: 'column', gap: '12px'}}>
+            {perguntas[perguntaAtual].opcoes.map((opt, i) => (
+              <button key={i} className="botao-rosa" onClick={() => responder(opt.tipo)}>
+                {opt.texto}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
       {tela === 'resultado' && (
         <div className="cartao">
-          <span className="resultado-emoji">{perfilFinal.emoji}</span>
-          <h1 className="resultado-titulo">{perfilFinal.nome}</h1>
-          <div className="divider"></div>
+          <span style={{fontSize: '4.5rem', display: 'block', marginBottom: '15px'}}>{perfilFinal.emoji}</span>
+          <h1 className="titulo-principal" style={{color: '#be185d'}}>{perfilFinal.nome}</h1>
           <p className="texto-cinza">{perfilFinal.desc}</p>
-       <div style={{display: 'flex', flexDirection: 'column', gap: '15px'}}>
-  {perguntas[perguntaAtual].opcoes.map((opcao, i) => (
-    <button 
-      key={i} 
-      className="botao-rosa" 
-      style={{
-        textAlign: 'left',
-        padding: '20px',
-        fontSize: '1rem',
-        lineHeight: '1.4'
-      }} 
-      onClick={() => responder(opcao.tipo)}
-    >
-      {opcao.texto}
-    </button>
-  ))}
-</div>
+          <div style={{display: 'flex', flexDirection: 'column', gap: '10px'}}>
+            <a href={urlWa} target="_blank" className="botao-rosa" style={{background: '#25D366', textDecoration: 'none'}}>
+              Enviar no WhatsApp
+            </a>
+            <button className="botao-rosa" style={{background: '#e5e7eb', color: '#4b5563'}} onClick={() => window.location.reload()}>
+              Refazer
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+export default App
