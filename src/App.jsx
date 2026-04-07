@@ -8,35 +8,47 @@ function App() {
 
   const perguntas = [
     {
-      titulo: "Qual dessas atividades mais renova sua energia?",
+      titulo: "O que mais renova sua energia e te traz paz?",
       opcoes: [
-        { texto: "🎨 Criar algo novo ou decorar um espaço", tipo: "criativa" },
-        { texto: "📊 Organizar planos e definir metas", tipo: "estrategista" },
-        { texto: "🌿 Cuidar de pessoas ou do ambiente", tipo: "protetora" }
+        { texto: "🎨 Expressar minha essência através da arte ou decoração.", tipo: "criativa" },
+        { texto: "📊 Organizar minhas metas e traçar planos claros de ação.", tipo: "estrategista" },
+        { texto: "🌿 Cuidar das pessoas que amo ou do meu lar com carinho.", tipo: "protetora" }
       ]
     },
     {
-      titulo: "Como você toma decisões importantes?",
+      titulo: "Diante de um desafio, qual sua primeira reação?",
       opcoes: [
-        { texto: "✨ Sigo minha intuição e inspiração", tipo: "criativa" },
-        { texto: "⚖️ Analiso os fatos e a lógica", tipo: "estrategista" },
-        { texto: "🤝 Penso no bem-estar de todos", tipo: "protetora" }
+        { texto: "✨ Buscar uma solução inovadora e fora da caixa.", tipo: "criativa" },
+        { texto: "⚖️ Analisar os fatos e traçar uma estratégia lógica.", tipo: "estrategista" },
+        { texto: "🤝 Pensar em como isso afeta as relações e o bem-estar coletivo.", tipo: "protetora" }
       ]
     },
     {
-      titulo: "Qual presente você mais gostaria de ganhar?",
+      titulo: "Qual dessas palavras melhor define sua força?",
       opcoes: [
-        { texto: "📸 Algo artesanal e exclusivo", tipo: "criativa" },
-        { texto: "🎯 Um planner ou curso de negócios", tipo: "estrategista" },
-        { texto: "🕯️ Um kit de autocuidado relaxante", tipo: "protetora" }
+        { texto: "Inovação", tipo: "criativa" },
+        { texto: "Liderança", tipo: "estrategista" },
+        { texto: "Cuidado", tipo: "protetora" }
       ]
     }
   ];
 
   const resultados = {
-    criativa: { nome: "A Criativa", emoji: "🎨", desc: "Sua essência é transformar o comum em extraordinário através da arte e da sensibilidade." },
-    estrategista: { nome: "A Estrategista", emoji: "🎯", desc: "Você nasceu para liderar e transformar objetivos em realidade com foco e disciplina." },
-    protetora: { nome: "A Protetora", emoji: "🌿", desc: "Sua força está no acolhimento e na capacidade de nutrir relações e sonhos com carinho." }
+    criativa: { 
+      nome: "A Criativa", 
+      emoji: "🎨", 
+      desc: "Sua alma é artística e inspiradora. Você transforma o mundo ao seu redor com beleza, originalidade e sensibilidade única."
+    },
+    estrategista: { 
+      nome: "A Estrategista", 
+      emoji: "🎯", 
+      desc: "Você é uma líder nata. Seu foco, disciplina e visão de futuro transformam sonhos ousados em planos concretos e realidade."
+    },
+    protetora: { 
+      nome: "A Protetora", 
+      emoji: "🌿", 
+      desc: "Seu coração é um refúgio. Você nutre, acolhe e fortalece as relações, criando laços profundos de amor, confiança e bem-estar."
+    }
   };
 
   const responder = (tipo) => {
@@ -50,43 +62,33 @@ function App() {
   };
 
   const vencedor = Object.keys(pontos).reduce((a, b) => pontos[a] > pontos[b] ? a : b);
-  const progresso = ((perguntaAtual) / perguntas.length) * 100;
+  const perfilFinal = resultados[vencedor];
+
+  // Link para compartilhar no WhatsApp
+  const mensagem = `Fiz o Quiz da Alana! Meu arquétipo é ${perfilFinal.nome} ${perfilFinal.emoji}. Descubra o seu: https://descubra-seu-arquetipo.vercel.app/`;
+  const urlWhatsapp = `https://wa.me/?text=${encodeURIComponent(mensagem)}`;
 
   return (
     <div className="tela-cheia">
       
       {tela === 'inicio' && (
         <div className="cartao">
-          <span style={{fontSize: '3rem'}}>✨</span>
-          <h1 className="titulo-principal">Descubra Seu Arquétipo</h1>
-          <p className="texto-cinza">Uma jornada visual e intuitiva para revelar a energia que guia sua essência.</p>
-          <button className="botao-rosa" onClick={() => setTela('quiz')}>Começar Jornada</button>
+          <span style={{fontSize: '3.5rem', marginBottom: '15px', display: 'block'}}>✨</span>
+          <h1 className="titulo-principal">Guia dos Arquétipos</h1>
+          <p className="texto-cinza">Descubra a energia que guia sua essência e seu estilo com a consultoria da Lilly.</p>
+          <button className="botao-rosa" onClick={() => setTela('quiz')}>Iniciar Jornada</button>
         </div>
       )}
 
       {tela === 'quiz' && (
         <div className="cartao">
-          {/* Barra de Progresso */}
           <div className="barra-container">
             <div className="barra-preenchida" style={{ width: `${((perguntaAtual + 1) / perguntas.length) * 100}%` }}></div>
           </div>
-          
-          <span style={{color: '#be185d', fontWeight: 'bold', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '1px'}}>
-            Etapa {perguntaAtual + 1} de {perguntas.length}
-          </span>
-          
-          <h2 style={{color: '#374151', margin: '20px 0', fontSize: '1.4rem', lineHeight: '1.3'}}>
-            {perguntas[perguntaAtual].titulo}
-          </h2>
-          
+          <h2 style={{color: '#374151', margin: '20px 0', fontSize: '1.4rem'}}>{perguntas[perguntaAtual].titulo}</h2>
           <div style={{display: 'flex', flexDirection: 'column', gap: '12px'}}>
-            {perguntas[perguntaAtual].opcoes.map((opcao, index) => (
-              <button 
-                key={index} 
-                className="botao-rosa" 
-                style={{backgroundColor: '#fff', color: '#be185d', border: '2px solid #fce7f3', textAlign: 'left', padding: '15px'}} 
-                onClick={() => responder(opcao.tipo)}
-              >
+            {perguntas[perguntaAtual].opcoes.map((opcao, i) => (
+              <button key={i} className="botao-rosa" style={{backgroundColor: '#fff', color: '#be185d', border: '1px solid #fce7f3', textAlign: 'left'}} onClick={() => responder(opcao.tipo)}>
                 {opcao.texto}
               </button>
             ))}
@@ -96,10 +98,14 @@ function App() {
 
       {tela === 'resultado' && (
         <div className="cartao">
-          <span style={{fontSize: '4rem'}}>{resultados[vencedor].emoji}</span>
-          <h1 className="titulo-principal" style={{marginTop: '10px'}}>{resultados[vencedor].nome}</h1>
-          <p className="texto-cinza" style={{fontSize: '1.1rem', fontWeight: '500'}}>{resultados[vencedor].desc}</p>
-          <button className="botao-rosa" onClick={() => window.location.reload()}>Refazer Teste</button>
+          <span className="resultado-emoji">{perfilFinal.emoji}</span>
+          <h1 className="resultado-titulo">{perfilFinal.nome}</h1>
+          <div className="divider"></div>
+          <p className="texto-cinza">{perfilFinal.desc}</p>
+          <div style={{display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '20px'}}>
+            <a href={urlWhatsapp} target="_blank" className="botao-whatsapp">Compartilhar Resultado</a>
+            <button className="botao-rosa" style={{background: '#f3f4f6', color: '#4b5563'}} onClick={() => window.location.reload()}>Refazer</button>
+          </div>
         </div>
       )}
 
