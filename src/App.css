@@ -1,0 +1,75 @@
+/* src/App.css */
+.tela-cheia {
+  background-color: #fff5f7; /* Rosa clarinho */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+}
+
+.cartao {
+  background: white;
+  padding: 40px;
+  border-radius: 30px;
+  box-shadow: 0 15px 35px rgba(190, 24, 93, 0.1);
+  text-align: center;
+  max-width: 380px;
+  border: 1px solid #fce7f3;
+}
+
+.titulo-principal {
+  color: #be185d; /* Cor Vinho */
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+}
+
+.botao-rosa {
+  background-color: #be185d;
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  transition: 0.3s;
+  margin-top: 10px;
+}
+
+.botao-rosa:hover {
+  background-color: #9d174d;
+  transform: translateY(-2px);
+}
+
+.texto-cinza {
+  color: #6b7280;
+  line-height: 1.5;
+  margin-bottom: 25px;
+}/* Animação de entrada suave */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.cartao {
+  animation: fadeIn 0.5s ease-out; /* Aplica a animação ao card */
+}
+
+/* Efeito de progresso */
+.barra-container {
+  width: 100%;
+  height: 6px;
+  background-color: #fce7f3;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.barra-preenchida {
+  height: 100%;
+  background-color: #be185d;
+  transition: width 0.3s ease;
+}
